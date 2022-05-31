@@ -29,9 +29,8 @@ public class BipartiteGraph<T> {
 	
 	
     /**
-     * @requires 
-     * @modifies
-     * @effects
+     * @modifies this
+     * @effects Creates a new Empty BipartiteGraph
      * 
      */
     public BipartiteGraph(String name) {
@@ -40,12 +39,10 @@ public class BipartiteGraph<T> {
     	this.nodes_ = new HashMap<T, List<T>>();
     	checkRep();
     }
-    //added
     
     /**
-     * @requires 
-     * @modifies
-     * @effects
+     * @modifies this
+     * @effects Adding a Black Node to this BipartiteGraph
      * 
      */
     public boolean addBlackNode(T blackNode) {
@@ -59,9 +56,8 @@ public class BipartiteGraph<T> {
 
     
     /**
-     * @requires 
-     * @modifies
-     * @effects
+     * @modifies this
+     * @effects Adding a White Node to this BipartiteGraph
      * 
      */
     public boolean addWhiteNode() {
@@ -72,10 +68,10 @@ public class BipartiteGraph<T> {
     }
     
     
-    /**
-     * @requires 
-     * @modifies
-     * @effects
+    /** 
+     * @modifies this
+     * @effects Add an edge from the node sourceNode to the node destinationNode. 
+     * 			The node is with label edgeLabel
      * 
      */
     public boolean addEdge(T sourceNode, T destinationNode, T edgeLabel) {
