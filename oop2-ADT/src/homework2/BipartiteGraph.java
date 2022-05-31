@@ -4,7 +4,6 @@ import java.util.*;
 
 public class BipartiteGraph<T> {
 	
-	private final String name_;
 	private Map<T, List<T>> nodes_;
 	
 	// TODO repInvariant BipartiteGraph
@@ -19,14 +18,7 @@ public class BipartiteGraph<T> {
 	//
 	//
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		//System.out.println("work");
 
-		
-		
-	}
-	
 	
     /**
      * @modifies this
