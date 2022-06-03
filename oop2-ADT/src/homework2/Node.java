@@ -38,10 +38,18 @@ public class Node<L>{
         }
     }
          
-        
+    public ArrayList<T> getChildren() {
+//        ArrayList<T> childrenList = new ArrayList<T>(childrenNodes.values());
+        return childrenNodes.values().toArray().clone();
+    }
+    public List<T> getParents() {
+//        ArrayList<T> parentsList = new ArrayList<T>(parentNodes.keySet());
+//        return Collections.unmodifiableList(parentsList);
+    	return parentNodes.values().toArray().clone();
+    }
     	
         
-    }
-
-
 }
+
+
+
