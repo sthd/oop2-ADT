@@ -4,6 +4,7 @@ import java.util.*;
 
 public class BipartiteGraph<T> {
 	
+
 	private Map<T, List<T>> nodes_;
 	
 	// TODO repInvariant BipartiteGraph
@@ -25,9 +26,8 @@ public class BipartiteGraph<T> {
      * @effects Creates a new Empty BipartiteGraph
      * 
      */
-    public BipartiteGraph(String name) {
+    public BipartiteGraph() {
     	//TODO
-    	this.name_= name;
     	this.nodes_ = new HashMap<T, List<T>>();
     	checkRep();
     }
