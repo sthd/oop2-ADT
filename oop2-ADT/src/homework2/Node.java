@@ -11,18 +11,18 @@ import java.util.Map;
 	A Node is a mutable representation of a node with parent node 
 	and children nodes which connected by edges with direction 
 		*/
-public class Node<L extends Comparable<L>> implements Comparable<Node<L>> {
+public class Node<T> {
 	//TODO add AF and REP variant
-	private L nodeLabel;
+	private T nodeLabel;
 //	private Map<L, Node<L>> parentNodes; // key is an edge, Value is a Node
 //	private Map<L, Node<L>> childrenNodes; // key is an edge, Value is a Node
-	private Map<L, L> parentNodes; // key is an edge, Value is a Node
-	private Map<L, L> childrenNodes; // key is an edge, Value is a Node
+	private Map<T, T> parentNodes; // key is an edge, Value is a Node
+	private Map<T, T> childrenNodes; // key is an edge, Value is a Node
 	
     /**
      * @effects Creates New node with label nodeLabel with no parents or children
      */ 
-    public Node(L nodeLabel) {
+    public Node(T nodeLabel) {
         // the key in the map is an edge and the value is a node, either a parent or a child
         this.nodeLabel = nodeLabel;
         parentNodes = new HashMap<>();
@@ -30,46 +30,43 @@ public class Node<L extends Comparable<L>> implements Comparable<Node<L>> {
     }
 
     //TODO add specs 
-    public void addChildNode(L edge, L childNode){
+    public void addChildNode(T edge, T childNode){
         if(!childrenNodes.containsValue(childNode)) {
         	childrenNodes.putIfAbsent(edge, childNode);
         }
     }
   //TODO add specs 
-    public void addParentNode(L edge, L parentNode) {
+    public void addParentNode(T edge, T parentNode) {
  	   if(!parentNodes.containsValue(parentNode)) {
  		  parentNodes.putIfAbsent(edge, parentNode);
         }
     }
   //TODO add specs 
     public Object[] getChildren() {
-//        ArrayList<T> childrenList = new ArrayList<T>(childrenNodes.values());
         return childrenNodes.values().toArray();
     }
   //TODO add specs 
     public Object[] getParents() {
-//        ArrayList<T> parentsList = new ArrayList<T>(parentNodes.keySet());
-//        return Collections.unmodifiableList(parentsList);
     	return parentNodes.values().toArray();
     }
-    
-    public L getLabel() {
+  //TODO add specs 
+    public T getLabel() {
     	return nodeLabel;
     }
-    
-    public L getChild(L edge) {
+  //TODO add specs 
+    public T getChild(T edge) {
     	return childrenNodes.get(edge);
     }
-    
-    public L getParent(L edge) {
+  //TODO add specs 
+    public T getParent(T edge) {
     	return parentNodes.get(edge);
     }
     
 
-	@Override
-	public int compareTo(Node<L> node) {
-		return nodeLabel.compareTo(node.getLabel());
-	}
+//	@Override
+//	public int compareTo(Node<T> node) {
+//		return nodeLabel.compareTo(node.getLabel());
+//	}
 }
 
 

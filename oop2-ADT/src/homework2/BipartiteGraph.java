@@ -14,7 +14,7 @@ import java.util.*;
  *
  *
 */
-public class BipartiteGraph<L extends Comparable<L>> {
+public class BipartiteGraph<T> {
 
 
     // TODO repInvariant BipartiteGraph
@@ -29,8 +29,8 @@ public class BipartiteGraph<L extends Comparable<L>> {
     //
     //
 
-	private Map<L, Node<L> > blackNodes;
-	private Map<L, Node<L> > whiteNodes;
+	private Map<T, Node<T> > blackNodes;
+	private Map<T, Node<T> > whiteNodes;
 
     /**
      * @effects Creates a new empty BipartiteGraph
@@ -47,7 +47,7 @@ public class BipartiteGraph<L extends Comparable<L>> {
      * @effects if whiteNode!=null Add a node blackNode to this BipartiteGraph
      * else do nothing
      */
-    public void addBlackNode(L blackNode) {
+    public void addBlackNode(T blackNode) {
 //        Node<L> newBlackNode = new Node<>(blackNode);
 //        this.blackNodes.add(newBlackNode);
     	if(blackNode!=null) {
@@ -61,7 +61,7 @@ public class BipartiteGraph<L extends Comparable<L>> {
      * @effects if blackNode !=null Add a node blackNode to this BipartiteGraph
      * else do nothing
      */
-    public void addWhiteNode(L whiteNode) {
+    public void addWhiteNode(T whiteNode) {
         //TODO
         // make sure node isn't in graph (using unique label)
     	if(whiteNode!=null) {
@@ -75,7 +75,7 @@ public class BipartiteGraph<L extends Comparable<L>> {
      * 			The node is with label edgeLabel
      *
      */
-    public void addEdge(L sourceNode, L destinationNode, L edgeLabel) {
+    public void addEdge(T sourceNode, T destinationNode, T edgeLabel) {
         // check that nodes  are not null
         // ?? check that the nodes are different??
         // ?? check that the nodes of different type (i.e. black or white) ??
@@ -96,33 +96,20 @@ public class BipartiteGraph<L extends Comparable<L>> {
     		return;
     	}
     	
-    	Node<L> src = getNode(sourceNode);
-    	Node<L> dst = getNode(destinationNode);
+    	Node<T> src = getNode(sourceNode);
+    	Node<T> dst = getNode(destinationNode);
     	src.addChildNode(edgeLabel, dst);
     	dst.addParentNode(edgeLabel, src);
     	
     }
 
-    @Override
-    public String toString() {
-        String s = "What to override";
-        return s;
-    }
-
-//    public List<T> getChildren(T node) {
-////        assert (node!= null): "node is null";
-////        assert (nodes.containsKey(node)): "node is not in the graph";
-//
-//        return  Collections.unmodifiableList(node.));
-//    }
-
-    private Node<L> getNode(L node){
-    	Node<L> v = blackNodes.get(node);
+    private Node<T> getNode(T node){
+    	Node<T> v = blackNodes.get(node);
     	if(v!=null) return v;
     	else return whiteNodes.get(node);
     }
     
-    public boolean contains(L node) {
+    public boolean contains(T node) {
     	return (blackNodes.containsKey(node) 
     			|| whiteNodes.containsKey(node));
     }
@@ -135,20 +122,22 @@ public class BipartiteGraph<L extends Comparable<L>> {
 	public Object[] listWhiteNodes() {
 		return whiteNodes.keySet().toArray();
 	}
-	
-	public Object[] listChildren(L parentName) {
+	//TODO add specs 
+	public Object[] listChildren(T parentName) {
 		return getNode(parentName).getChildren();
 	}
-	
-	public Object[] listParents(L childName) {
+	//TODO add specs 
+	public Object[] listParents(T childName) {
 		return getNode(childName).getParents();
 	}
-
-   public L getChildByEdgeLabel(L parentName,
-			   L edgeLabel) {
+	//TODO add specs 
+   public T getChildByEdgeLabel(T parentName, T edgeLabel) {
 	   return getNode(parentName).getChild(edgeLabel);
    }
 	
+   public T getParentByEdgeLabel(T childName, T edgeLabel) {
+   return getNode(childName).getParent(edgeLabel);
+}
    
     /**
      * Checks to see if the representation invariant is being violated
@@ -162,6 +151,12 @@ public class BipartiteGraph<L extends Comparable<L>> {
 
     }
 
+    @Override
+    public String toString() {
+    	//TODO add string
+    	String s = "What to override";
+    	return s;
+    }
 
 
 
