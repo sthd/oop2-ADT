@@ -88,9 +88,7 @@ public class BipartiteGraphTestDriver {
      * 		   in the graph graphName, in alphabetical order.
      */
     public String listBlackNodes(String graphName) {
-    	String[] blacks = (String[]) graphs.get(graphName).listBlackNodes();
-    	Arrays.sort(blacks);
-    	return blacks.toString();
+    	return sortandStringArray(graphs.get(graphName).listBlackNodes());
     }
 
     
@@ -100,7 +98,7 @@ public class BipartiteGraphTestDriver {
      * 		   in the graph graphName, in alphabetical order.
      */
     public String listWhiteNodes(String graphName) {
-    	return SortArray((String[]) graphs.get(graphName).listWhiteNodes());
+    	return sortandStringArray( graphs.get(graphName).listWhiteNodes());
     }
 
     
@@ -110,7 +108,7 @@ public class BipartiteGraphTestDriver {
      * 		   parentName in the graph graphName, in alphabetical order.
      */
     public String listChildren(String graphName, String parentName) {
-    	return SortArray((String[])graphs.get(graphName).listChildren(parentName));
+    	return sortandStringArray(graphs.get(graphName).listChildren(parentName));
 
     }
 
@@ -121,7 +119,7 @@ public class BipartiteGraphTestDriver {
      * 		   childName in the graph graphName, in alphabetical order.
      */
     public String listParents(String graphName, String childName) {
-    	return SortArray((String[])graphs.get(graphName).listParents(childName));
+    	return sortandStringArray(graphs.get(graphName).listParents(childName));
     }
 
     
@@ -150,8 +148,8 @@ public class BipartiteGraphTestDriver {
     	
     }
     
-    private String SortArray(String[] arr) {
+    private String sortandStringArray(Object[] arr) {
     	Arrays.sort(arr);
-    	return arr.toString();
+    	return Arrays.toString(arr).replaceAll("[,\\[\\]]","");
     }
 }

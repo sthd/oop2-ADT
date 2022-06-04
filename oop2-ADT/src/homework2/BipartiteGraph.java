@@ -62,8 +62,6 @@ public class BipartiteGraph<T> {
      * else do nothing
      */
     public void addWhiteNode(T whiteNode) {
-        //TODO
-        // make sure node isn't in graph (using unique label)
     	if(whiteNode!=null) {
     	whiteNodes.putIfAbsent(whiteNode, new Node<>(whiteNode));
     	}
@@ -98,8 +96,8 @@ public class BipartiteGraph<T> {
     	
     	Node<T> src = getNode(sourceNode);
     	Node<T> dst = getNode(destinationNode);
-    	src.addChildNode(edgeLabel, dst);
-    	dst.addParentNode(edgeLabel, src);
+    	src.addChildNode(edgeLabel, dst.getLabel());
+    	dst.addParentNode(edgeLabel, src.getLabel());
     	
     }
 
@@ -151,12 +149,6 @@ public class BipartiteGraph<T> {
 
     }
 
-    @Override
-    public String toString() {
-    	//TODO add string
-    	String s = "What to override";
-    	return s;
-    }
 
 
 
