@@ -55,8 +55,6 @@ public class BipartiteGraph<T> {
  * 				else do nothing
      */
     public void addBlackNode(T blackNode) {
-//        Node<L> newBlackNode = new Node<>(blackNode);
-//        this.blackNodes.add(newBlackNode);
     	if(blackNode!=null || !this.contains(blackNode)) {
     	blackNodes.put(blackNode, new Node<>());
     	}
