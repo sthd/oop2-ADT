@@ -1,6 +1,7 @@
 package homework2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +34,7 @@ public class Node<T> {
 	 * child/parent nodes or two different edges to/from the same child/parent node.
 	 * Between two nodes there can be at most only one edge 
 	 * with the same direction. 
+	 * Each Edge and Node has general label of the same type
 	 * 
 	 */
 

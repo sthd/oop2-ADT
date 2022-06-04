@@ -1,36 +1,42 @@
 package homework2;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 
 
 /*Overview:
- *  A BipartiteGraph is a mutable representation of a graph
- *	made of two types of nodes (black and white) and one type of edges.
- *	Edge has direction, from src node to dst node
- *	there can't be more then one edge with the same src and dst node.
+ *  A BipartiteGraph is a mutable representation of a Bipartite graph
+ *	made of two types of nodes (black and white) and one type of directional edges.
  *	Each Edge and Node has general label of the same type
  *	There can't be edge from same type of node (black to black or white to white etc).
  *
  *
 */
 public class BipartiteGraph<T> {
-
-
-    // TODO repInvariant BipartiteGraph
-    // RepInvariant:
-    //
-    //
-    //
-
-    // TODO abstract function BipartiteGraph
-    // Abstraction Function:
-    //
-    //
-    //
-
 	private Map<T, Node<T> > blackNodes;
 	private Map<T, Node<T> > whiteNodes;
+
+	/*
+	 * Abstract Function:
+	 * 	AF(g) = represents a Bipartite graph
+	 *	blackNodes<key,value> = <label of black node , The black node associated with the label>
+	 *  and 
+	 *  whiteNodes<key,value> = <label of white node , The white node associated with the label>
+	 */
+	
+	/*
+	 * Rep invariant:
+	 * All nodes' label are unique 
+	 * and 
+	 * No edge from white node to white node 
+	 * and 
+	 * No edge from black node to black node
+	 * and
+	 * blackNodes.keys() != null && blackNodes.values() != null
+	 * whiteNodes.keys() != null && whiteNodes.values() != null
+	 */
+
 
     /**
      * @effects Creates a new empty BipartiteGraph
@@ -52,8 +58,9 @@ public class BipartiteGraph<T> {
 //        Node<L> newBlackNode = new Node<>(blackNode);
 //        this.blackNodes.add(newBlackNode);
     	if(blackNode!=null || !this.contains(blackNode)) {
-    	blackNodes.put(blackNode, new Node<>(blackNode));
+    	blackNodes.put(blackNode, new Node<>());
     	}
+    	assert checkRep();
     }
 
 
@@ -65,8 +72,9 @@ public class BipartiteGraph<T> {
      */
     public void addWhiteNode(T whiteNode) {
     	if(whiteNode!=null && !this.contains(whiteNode)) {
-    	whiteNodes.put(whiteNode, new Node<>(whiteNode));
+    	whiteNodes.put(whiteNode, new Node<>());
     	}
+    	assert checkRep();
     }
 
     /**
@@ -94,25 +102,26 @@ public class BipartiteGraph<T> {
     	
     	Node<T> src = getNode(sourceNode);
     	Node<T> dst = getNode(destinationNode);
-    	src.addChildNode(edgeLabel, dst.getLabel());
-    	dst.addParentNode(edgeLabel, src.getLabel());
+    	src.addChildNode(edgeLabel, destinationNode);
+    	dst.addParentNode(edgeLabel, sourceNode);
+    	assert checkRep();
     	
     }
     
     /**
-     * @effects return a copy of Array of Objects that presents of all the Black Nodes in this
+     * @effects return a copy of Array of Objects that represents of all the Black Nodes in this
      */
 	public Object[] listBlackNodes() {
 		return blackNodes.keySet().toArray();
 	}
     /**
-     * @effects return a copy of Array of Objects that presents of all the white Nodes in this
+     * @effects return a copy of Array of Objects that represents of all the white Nodes in this
      */
 	public Object[] listWhiteNodes() {
 		return whiteNodes.keySet().toArray();
 	}
     /**
-     * @effects return a copy of Array of Objects that presents children nodes of a parentName 
+     * @effects return a copy of Array of Objects that represents children nodes of a parentName 
      * 			or null if parentName is not in the graph
      * 			if parentName has no children return empty array
      */ 
@@ -120,7 +129,7 @@ public class BipartiteGraph<T> {
 		return getNode(parentName).getChildren();
 	}
     /**
-     * @effects return a copy of Array of Objects that presents parents nodes of a childName 
+     * @effects return a copy of Array of Objects that represents parents nodes of a childName 
      			or null if childName is not in the graph
      * 			if childName has no parent return empty array
      */  
@@ -158,10 +167,24 @@ public class BipartiteGraph<T> {
      *
      */
     private boolean checkRep() {
-        //TODO Graph CheckRep
-    	return true;
-
-
+       if(blackNodes.containsKey(null)||blackNodes.containsValue(null)
+    		   ||whiteNodes.containsKey(null)||whiteNodes.containsValue(null)) {
+    	   return false;
+       }
+       //Checking if the relative of each black node is white
+       for(Entry<T, Node<T>> entry : blackNodes.entrySet()) {
+    	   if(!allRelativesAreInSet(entry.getValue(),whiteNodes.keySet())) {
+    		   return false;
+    	   }
+       }
+     //Checking if the relative of each white node is black
+       for(Entry<T, Node<T>> entry : whiteNodes.entrySet()) {
+    	   if(!allRelativesAreInSet(entry.getValue(),blackNodes.keySet())) {
+    		   return false;
+    	   }
+    		   
+       }
+       return true;
     }
 
     
@@ -171,6 +194,15 @@ public class BipartiteGraph<T> {
     	else return whiteNodes.get(node);
     }
     
+    private boolean allRelativesAreInSet(Node<T> n, Set<T> s) {
+    	 List<Object> listOfParents = Arrays.asList(n.getParents());
+ 	     List<Object> listOfChildren= Arrays.asList(n.getChildren());  
+	     if(!s.containsAll(listOfParents)||
+	    		 !s.containsAll(listOfChildren)) {
+	     					return false;
+	     }
+	     return true;
+    }
 
 
 
