@@ -45,9 +45,10 @@ public class SimulatorTest {
 		assertEquals("wrong pipe contents", "", d.listContents(s, "input3"));
 		assertEquals("wrong pipe contents", "", d.listContents(s, "output"));
 		d.simulate(s);
-		assertEquals("wrong pipe contents", "2 3 12 8", d.listContents(s, "input1"));
-		assertEquals("wrong pipe contents", "9 4", d.listContents(s, "input2"));
+		assertEquals("wrong pipe contents", "3 12 8", d.listContents(s, "input1"));
+		assertEquals("wrong pipe contents", "4", d.listContents(s, "input2"));
 		assertEquals("wrong pipe contents", "", d.listContents(s, "input3"));
+		assertEquals("wrong pipe contents", "11", d.listContents(s, "output"));
 		
 		
 		
