@@ -68,7 +68,7 @@ public class BipartiteGraph<T> {
     
 	//TODO add specs
     public void addWhiteNode(T whiteNode, Object job) {
-    	addBlackNode(whiteNode);
+    	addWhiteNode(whiteNode);
 		getNode(whiteNode).setJob(job);
     }
 
