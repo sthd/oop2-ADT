@@ -23,9 +23,10 @@ public class IntPipe implements Simulatable<String> {
 		return end.remove(0);
 	}
 	//TODO add specs
+	//TODO fix the order of the content
 	public List<Integer> listContents() {
-		List<Integer> contents = new ArrayList<>(start);
-		contents.addAll(end);
+		List<Integer> contents = new ArrayList<>(end);
+		contents.addAll(start);
 		return contents;
 	}
 	
