@@ -170,14 +170,14 @@ public class BipartiteGraph<T> {
     	   return false;
        }
        //Checking if the relative of each black node is white
-       for(Entry<T, Node<T>> entry : blackNodes.entrySet()) {
-    	   if(!allRelativesAreInSet(entry.getValue(),whiteNodes.keySet())) {
+       for(Node<T> blackNode: blackNodes.values()) {
+    	   if(!allRelativesAreInSet(blackNode,whiteNodes.keySet())) {
     		   return false;
     	   }
        }
      //Checking if the relative of each white node is black
-       for(Entry<T, Node<T>> entry : whiteNodes.entrySet()) {
-    	   if(!allRelativesAreInSet(entry.getValue(),blackNodes.keySet())) {
+       for(Node<T> whiteNode: whiteNodes.values()) {
+    	   if(!allRelativesAreInSet(whiteNode,blackNodes.keySet())) {
     		   return false;
     	   }
     		   
