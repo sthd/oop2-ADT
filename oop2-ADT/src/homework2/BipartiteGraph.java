@@ -174,8 +174,23 @@ public class BipartiteGraph<T> {
   public Object getJob(T node) {
 	  return getNode(node).getJob();
   }
-   
-   
+	//TODO add specs
+  public T getNodeLabelByJob(Object job) {
+	for( Entry<T, Node<T>> entry : blackNodes.entrySet()) {
+		if(entry.getValue().getJob() == job ) {
+			return entry.getKey();
+		}
+	}
+	for( Entry<T, Node<T>> entry : whiteNodes.entrySet()) {
+		if(entry.getValue().getJob() == job ) {
+			return entry.getKey();
+		}
+	}
+	
+	return null;
+	  
+  }
+    
    /**
     * @effects return true if the node is contained in this
     */ 

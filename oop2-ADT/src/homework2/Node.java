@@ -96,12 +96,7 @@ public class Node<T> {
     public Object[] getParents() {
     	return parentNodes.values().toArray();
     }
-//    /**
-//     * @effects return the label of this
-//     */  
-//    public T getLabel() {
-//    	return nodeLabel;
-//    }
+    
     /**
      * @effects return the child node associated edge in this
      * 			if there is no child with edge from this to child, return null

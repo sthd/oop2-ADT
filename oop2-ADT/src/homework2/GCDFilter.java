@@ -1,12 +1,16 @@
 package homework2;
 //TODO overview
 public class GCDFilter implements Simulatable<String> {
-	IntPipe aPipe, bPipe, output;
 	//TODO add rep invariant
 	//TODO add Abstraction function
 	
 	//TODO add specs
 	public void simulate(BipartiteGraph<String> graph) {
+		String label = graph.getNodeLabelByJob(this);
+		IntPipe aPipe = (IntPipe)graph.getJob(graph.getParentByEdgeLabel(label, "a"));
+		IntPipe bPipe = (IntPipe)graph.getJob(graph.getParentByEdgeLabel(label, "b"));
+		IntPipe output = (IntPipe)graph.getJob(graph.getChildByEdgeLabel(label, "gcd")); 
+
 		Integer a = aPipe.getNext();
 		Integer b = bPipe.getNext();
 		

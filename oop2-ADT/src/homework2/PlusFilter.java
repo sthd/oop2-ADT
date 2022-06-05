@@ -1,8 +1,9 @@
 package homework2;
+
+import java.util.Arrays;
+
 //TODO overview
 public class PlusFilter implements Simulatable<String> {
-	IntPipe[] inputs;
-	IntPipe output;
 	//TODO add rep invariant
 	//TODO add Abstraction function
 	
@@ -13,12 +14,14 @@ public class PlusFilter implements Simulatable<String> {
 	//TODO add specs
 	public void simulate(BipartiteGraph<String> graph) {
 		Integer sum = 0;
-		for(IntPipe input :inputs) {
+		String label = graph.getNodeLabelByJob(this);
+		Object[] inputs = graph.listParents(label);
+		IntPipe output = (IntPipe)Arrays.asList(graph.listChildren(label)).get(0);
+		
+		for(Object input :inputs) {
 			try {
-				sum=+input.getNext();
-			}catch( IndexOutOfBoundsException e ) {
-				//nothing
-			}
+				sum=+((IntPipe)input).getNext();
+			}catch( IndexOutOfBoundsException e ) {}
 		}
 		output.add(sum);
 	}
