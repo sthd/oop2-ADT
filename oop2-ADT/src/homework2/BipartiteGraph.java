@@ -60,7 +60,17 @@ public class BipartiteGraph<T> {
     	}
     	assert checkRep();
     }
-
+	//TODO add specs
+    public void addBlackNode(T blackNode, Object job) {
+    	addBlackNode(blackNode);
+		getNode(blackNode).setJob(job);
+    }
+    
+	//TODO add specs
+    public void addWhiteNode(T whiteNode, Object job) {
+    	addBlackNode(whiteNode);
+		getNode(whiteNode).setJob(job);
+    }
 
     /**
      * @modifies this
@@ -152,15 +162,19 @@ public class BipartiteGraph<T> {
     */ 
    
    public T getParentByEdgeLabel(T childName, T edgeLabel) {
-   return getNode(childName).getParent(edgeLabel);
+	   return getNode(childName).getParent(edgeLabel);
 }
    
    //TODO add specs
-   public Node<T> getNode(T nodeLabel){
+   private Node<T> getNode(T nodeLabel){
 	   Node<T> v = blackNodes.get(nodeLabel);
 	   if(v!=null) return v;
 	   else return whiteNodes.get(nodeLabel);
    }
+  public Object getJob(T node) {
+	  return getNode(node).getJob();
+  }
+   
    
    /**
     * @effects return true if the node is contained in this
@@ -169,6 +183,8 @@ public class BipartiteGraph<T> {
 	   return (blackNodes.containsKey(node) 
 			   || whiteNodes.containsKey(node));
    }
+
+     
     /**
      * Checks to see if the representation invariant is being violated
      * @throws AssertionError if representation invariant is violated
@@ -181,7 +197,6 @@ public class BipartiteGraph<T> {
        }
        //Checking if the relative of each black node is white
        
-       blackNodes.
        for(Node<T> blackNode: blackNodes.values()) {
     	   if(!allRelativesAreInSet(blackNode,whiteNodes.keySet())) {
     		   return false;

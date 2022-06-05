@@ -22,6 +22,12 @@ public class IntPipe implements Simulatable<String> {
 	public Integer getNext() {
 		return end.remove(0);
 	}
+	//TODO add specs
+	public List<Integer> listContents() {
+		List<Integer> contents = new ArrayList<>(start);
+		contents.addAll(end);
+		return contents;
+	}
 	
 	//TODO add specs
 	@Override
