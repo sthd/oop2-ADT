@@ -20,11 +20,13 @@ public class Simulator<T> {
 	
 	//TODO add specs
 	public void simulate() {
-		for (Object pipe: graph.listBlackNodes()) {
-			((Simulatable<T>)pipe).simulate(graph);
+		for (Object pipeLabel: graph.listBlackNodes()) {
+			Node <T> pipeNode =graph.getNode((T)pipeLabel);
+			((Simulatable<T>)pipeNode.getJob()).simulate(graph);
 		}
-		for (Object filter: graph.listWhiteNodes()) {
-			((Simulatable<T>)filter).simulate(graph);
+		for (Object filterLabel: graph.listWhiteNodes()) {
+			Node <T> filterNode = graph.getNode((T)filterLabel);
+			((Simulatable<T>)filterNode.getJob()).simulate(graph);
 		}
 		round=+1;
 	}

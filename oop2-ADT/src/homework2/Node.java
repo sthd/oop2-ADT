@@ -1,21 +1,18 @@
 package homework2;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /*	overview:
 	A Node is a mutable representation of a node with parent nodes
 	and children nodes which connected by edges with direction 
+	The node contains job object which represent functionally in 
+	the right presentation of the graph (A computer in Net of computers for example)
 */	
 public class Node<T> {
 	private Map<T, T> parentNodes; // pairs of <Edge,parentNode>
 	private Map<T, T> childrenNodes; // pairs of <Edge,childNode>
-	
+	private Object job;
 	/*
 	 * Abstract Function:
 	 * 	AF(n) = represents a node in directional graph that has edges with direction
@@ -38,18 +35,26 @@ public class Node<T> {
 	 * 
 	 */
 
-	
-	
+	/**
+	 * @modifies this
+     * @effects Creates New node with label nodeLabel with no parents or children
+     * 			and sets job to null
+     */
+   public Node() {
+        parentNodes = new HashMap<>();
+        childrenNodes = new HashMap<>();
+        job = null;
+    }
 	
 	/**
 	 * @modifies this
      * @effects Creates New node with label nodeLabel with no parents or children
+     * 			and set this' job to job
      */ 
-    public Node() {
-        // the key in the map is an edge and the value is a node, either a parent or a child
-//        this.nodeLabel = nodeLabel;
+    public Node(Object job) {
         parentNodes = new HashMap<>();
         childrenNodes = new HashMap<>();
+        this.setJob(job);
     }
 
     /**
@@ -111,7 +116,24 @@ public class Node<T> {
     public T getParent(T edge) {
     	return parentNodes.get(edge);
     }
-    
+
+	/**
+     * @effects return the job of this node
+     */
+	public Object getJob() {
+		return job;
+	}
+
+	/**
+	 * @modifies this
+     * @effects set this' job to job
+     */
+	public void setJob(Object job) {
+		this.job = job;
+	}
+
+
+
 }
 
 

@@ -27,7 +27,7 @@ public class IntPipe implements Simulatable<String> {
 	@Override
 	public void simulate(BipartiteGraph<String> graph) {
 		end.addAll(start);
-		start.removeAll(start);
+		start.clear();
 	}
 	
 }

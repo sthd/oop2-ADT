@@ -107,13 +107,13 @@ public class BipartiteGraph<T> {
     }
     
     /**
-     * @effects return a copy of Array of Objects that represents of all the Black Nodes in this
+     * @effects return a copy of Array of Objects that represents the label of Black Nodes in this
      */
 	public Object[] listBlackNodes() {
 		return blackNodes.keySet().toArray();
 	}
     /**
-     * @effects return a copy of Array of Objects that represents of all the white Nodes in this
+     * @effects return a copy of Array of Objects that represents the label of all the white Nodes in this
      */
 	public Object[] listWhiteNodes() {
 		return whiteNodes.keySet().toArray();
@@ -155,6 +155,16 @@ public class BipartiteGraph<T> {
    return getNode(childName).getParent(edgeLabel);
 }
    
+   //TODO add specs
+   public Node<T> getNode(T nodeLabel){
+	   Node<T> v = blackNodes.get(nodeLabel);
+	   if(v!=null) return v;
+	   else return whiteNodes.get(nodeLabel);
+   }
+   
+   /**
+    * @effects return true if the node is contained in this
+    */ 
    public boolean contains(T node) {
 	   return (blackNodes.containsKey(node) 
 			   || whiteNodes.containsKey(node));
@@ -185,13 +195,6 @@ public class BipartiteGraph<T> {
        return true;
     }
 
-    
-    private Node<T> getNode(T node){
-    	Node<T> v = blackNodes.get(node);
-    	if(v!=null) return v;
-    	else return whiteNodes.get(node);
-    }
-    
     private boolean allRelativesAreInSet(Node<T> n, Set<T> s) {
     	 List<Object> listOfParents = Arrays.asList(n.getParents());
  	     List<Object> listOfChildren= Arrays.asList(n.getChildren());  
