@@ -16,7 +16,7 @@ import java.util.Map.Entry;
 public class BipartiteGraph<T> {
 	private Map<T, Node<T> > blackNodes;
 	private Map<T, Node<T> > whiteNodes;
-
+	
 	/*
 	 * Abstract Function:
 	 * 	AF(g) = represents a Bipartite graph
@@ -180,11 +180,14 @@ public class BipartiteGraph<T> {
     	   return false;
        }
        //Checking if the relative of each black node is white
+       
+       blackNodes.
        for(Node<T> blackNode: blackNodes.values()) {
     	   if(!allRelativesAreInSet(blackNode,whiteNodes.keySet())) {
     		   return false;
     	   }
        }
+   
      //Checking if the relative of each white node is black
        for(Node<T> whiteNode: whiteNodes.values()) {
     	   if(!allRelativesAreInSet(whiteNode,blackNodes.keySet())) {
