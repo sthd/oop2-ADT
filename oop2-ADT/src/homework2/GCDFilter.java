@@ -1,12 +1,15 @@
 package homework2;
 /*
- * 	Overview: This class implents filter for Simulator class that operate a 
+ * 	Overview: This class impelents filter for Simulator class that operate a 
 	GCD finder for two intergers by using euclidean algorithm . For two Integers after enough simulate() rounds
 	it will output the GCD into child Intpipe with edge labeled "gcd"
 */
 public class GCDFilter implements Simulatable<String> {
-	//TODO add rep invariant
 	
+	/*
+	 * Representation Invariant:
+	 * None
+	*/
 	/*
 	 * Abstraction Function:
 	 * AF(c) = a filter gcd finder so that
@@ -57,6 +60,6 @@ public class GCDFilter implements Simulatable<String> {
 		}
 		
 	}
-	
+
 
 }

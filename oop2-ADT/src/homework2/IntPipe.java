@@ -4,13 +4,22 @@ import java.util.*;
 
 /*
  * overview:
- * This represent abstraction of pipe that transfer Integers from the start of the pipe until the end 
+ * This represent abstraction of pipe that transfer Integers from the start of the pipe to the end of it
  * by calling this.simulate(). 
  * 
  * */
 public class IntPipe implements Simulatable<String> {
-	//TODO add rep invariant
-	//TODO add Abstraction function
+	/*
+	 * Representation Invariant:
+	 * for each in 0<i<start.size and 0<j<end.size
+	 * start[i] != null && end[j] != null
+	*/
+	
+	/*Abstraction Function:
+	 * AF(c) = representation of Int pipe so that
+	 * c.start =  all the integers in the start of  pipe
+	 * c.end = all the integers in the end of pips
+	*/
 	
 	private List<Integer> start;
 	private List<Integer> end;
@@ -49,8 +58,8 @@ public class IntPipe implements Simulatable<String> {
 	
 	/**
      * @modifies this
-     * @effects simulate 1 round of this. it will add all the numbers from start of the pipe
-     * 			to the end of the pipe.
+     * @effects simulate 1 round of this. it will append all the numbers from start of the pipe
+     * 			to the end of the pipe. 
      */
 	@Override
 	public void simulate(BipartiteGraph<String> graph) {
