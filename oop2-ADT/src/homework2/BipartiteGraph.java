@@ -8,9 +8,8 @@ import java.util.Map.Entry;
 /*Overview:
  *  A BipartiteGraph is a mutable representation of a Bipartite graph
  *	made of two types of nodes (black and white) and one type of directional edges.
- *	Each Edge and Node has general label of the same type
+ *	Each Edge and Node has general label of the same type and nodes holds object job for extra functionality
  *	There can't be edge from same type of node (black to black or white to white etc).
- *
  *
 */
 public class BipartiteGraph<T> {
@@ -60,13 +59,23 @@ public class BipartiteGraph<T> {
     	}
     	assert checkRep();
     }
-	//TODO add specs
+    /**
+     * @modifies this
+     * @effects if blackNode !=null and there is no other node with the same label
+     * 			Add a black node with label blackNode and his job to job to this
+     * 			else do nothing
+     */
     public void addBlackNode(T blackNode, Object job) {
     	addBlackNode(blackNode);
 		getNode(blackNode).setJob(job);
     }
     
-	//TODO add specs
+    /**
+     * @modifies this
+     * @effects if whiteNode !=null and there is no other node with the same label
+     * 			Add a white node with label whiteNode and his job to job to this
+     * 			else do nothing
+     */
     public void addWhiteNode(T whiteNode, Object job) {
     	addWhiteNode(whiteNode);
 		getNode(whiteNode).setJob(job);
@@ -166,16 +175,10 @@ public class BipartiteGraph<T> {
 	   return getNode(childName).getParent(edgeLabel);
 }
    
-   //TODO add specs
-   private Node<T> getNode(T nodeLabel){
-	   Node<T> v = blackNodes.get(nodeLabel);
-	   if(v!=null) return v;
-	   else return whiteNodes.get(nodeLabel);
-   }
-  public Object getJob(T node) {
-	  return getNode(node).getJob();
-  }
-	//TODO add specs
+  /**
+   * @effects 	return a label of node that associated with job instance (node.job == job)
+   * 			if no node has the instance of job then reutrn null
+   */ 
   public T getNodeLabelByJob(Object job) {
 	for( Entry<T, Node<T>> entry : blackNodes.entrySet()) {
 		if(entry.getValue().getJob() == job ) {
@@ -239,6 +242,14 @@ public class BipartiteGraph<T> {
 	     return true;
     }
 
+    private Node<T> getNode(T nodeLabel){
+    	Node<T> v = blackNodes.get(nodeLabel);
+    	if(v!=null) return v;
+    	else return whiteNodes.get(nodeLabel);
+    }
+    public Object getJob(T node) {
+    	return getNode(node).getJob();
+    }
 
 
 

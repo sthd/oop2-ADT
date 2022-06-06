@@ -19,8 +19,8 @@ public class GCDFilter implements Simulatable<String> {
 		IntPipe bPipe = (IntPipe)graph.getJob(graph.getParentByEdgeLabel(label, "b"));
 		IntPipe output = (IntPipe)graph.getJob(graph.getChildByEdgeLabel(label, "gcd")); 
 
-		Integer a = aPipe.getNext();
-		Integer b = bPipe.getNext();
+		Integer a = aPipe.getNextandRemove();
+		Integer b = bPipe.getNextandRemove();
 		
 		if (b==0) {
 			// computation is finished – a is the GCD

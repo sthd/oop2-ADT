@@ -16,7 +16,7 @@ public class PlusFilter implements Simulatable<String> {
 		IntPipe output = (IntPipe)graph.getJob((String)graph.listChildren(label)[0]);
 		for(Object input :inputs) {
 			try {
-				sum+=((IntPipe)graph.getJob((String)input)).getNext();
+				sum+=((IntPipe)graph.getJob((String)input)).getNextandRemove();
 			}catch( IndexOutOfBoundsException e ) {}
 		}
 		output.add(sum);

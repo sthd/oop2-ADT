@@ -120,12 +120,10 @@ public class Node<T> {
 
 	/**
 	 * @modifies this
-     * @effects set this' job to job if job is not null
+     * @effects set this' job to job
      */
 	public void setJob(Object job) {
-		if(job!=null) {
 			this.job = job;			
-		}
 	}
 
 
