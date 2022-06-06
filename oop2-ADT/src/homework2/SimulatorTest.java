@@ -36,9 +36,13 @@ public class SimulatorTest {
 		d.addEdge(sim, "GCDFilter", "output" , "gcd");
 		
 		
-		d.injectInput(sim, "input1", 18);
-		d.injectInput(sim, "input2", 12);
+		d.injectInput(sim, "input1", 12);
+		d.injectInput(sim, "input2", 18);
 		
+		assertEquals("wrong pipe contents", "12", d.listContents(sim, "input1"));
+		assertEquals("wrong pipe contents", "18", d.listContents(sim, "input2"));
+		assertEquals("wrong pipe contents", "", d.listContents(sim, "output"));
+		d.simulate(sim);
 		assertEquals("wrong pipe contents", "18", d.listContents(sim, "input1"));
 		assertEquals("wrong pipe contents", "12", d.listContents(sim, "input2"));
 		assertEquals("wrong pipe contents", "", d.listContents(sim, "output"));

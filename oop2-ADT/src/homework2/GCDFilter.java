@@ -1,10 +1,18 @@
 package homework2;
-//TODO overview
+//TODO overview:
+/*
+ * 	Overview: This class implents filter for Simulator class that operate a 
+	GCD calculator. For two Integers after enough simulate()
+	it will output the GCD.
+*/
 public class GCDFilter implements Simulatable<String> {
 	//TODO add rep invariant
 	//TODO add Abstraction function
 	
-	//TODO add specs
+    /**
+     * @modifies graph
+     * @effects 
+     */
 	public void simulate(BipartiteGraph<String> graph) {
 		String label = graph.getNodeLabelByJob(this);
 		IntPipe aPipe = (IntPipe)graph.getJob(graph.getParentByEdgeLabel(label, "a"));
