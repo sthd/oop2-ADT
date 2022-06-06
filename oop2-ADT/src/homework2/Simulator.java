@@ -1,12 +1,13 @@
 package homework2;
 
 import java.util.Arrays;
+
 /*Overview:
 	This class represent generic simulator of pipes and filters
-	There are job objects that transfered between stations
-	simulate() are the simulation action which advance the simuation in one round
+	There are job objects that transferred between stations
+	simulate() are the simulation action which advance the simulation in one round
  	each round, all the pipes will transfer job objects to the next target 
-	 and all the filters will do work on the job objects and passed them on when done.
+	and all the filters will do work on the job objects and passed them on when done.
 */
 
 public class Simulator<T> {

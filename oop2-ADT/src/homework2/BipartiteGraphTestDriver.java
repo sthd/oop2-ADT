@@ -1,5 +1,7 @@
 package homework2;
 
+import homework2.BipartiteGraph;
+
 import java.util.*;
 
 /**
