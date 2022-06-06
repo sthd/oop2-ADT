@@ -12,7 +12,7 @@ import java.util.*;
 public class Node<T> {
 	private Map<T, T> parentNodes; // pairs of <Edge,parentNode>
 	private Map<T, T> childrenNodes; // pairs of <Edge,childNode>
-	private Object job;
+	private Object job=null;
 	/*
 	 * Abstract Function:
 	 * 	AF(n) = represents a node in directional graph that has edges with direction
@@ -43,7 +43,6 @@ public class Node<T> {
    public Node() {
         parentNodes = new HashMap<>();
         childrenNodes = new HashMap<>();
-        job = null;
     }
 	
 	/**
@@ -121,10 +120,12 @@ public class Node<T> {
 
 	/**
 	 * @modifies this
-     * @effects set this' job to job
+     * @effects set this' job to job if job is not null
      */
 	public void setJob(Object job) {
-		this.job = job;
+		if(job!=null) {
+			this.job = job;			
+		}
 	}
 
 

@@ -94,6 +94,7 @@ public class BipartiteGraph<T> {
      * 			(destinationNode is white Node and sourceNode is black etc.)
      * 			and destinationNode and sourceNode needs to be contained in the graph
      * 			else do nothing
+     * 			if edgeLabel ==null then do nothing
      *			if the edge is created it will be labeled with the edgeLabel
      */
     public void addEdge(T sourceNode, T destinationNode, T edgeLabel) {

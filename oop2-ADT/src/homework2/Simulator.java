@@ -56,29 +56,40 @@ public class Simulator<T> {
      * @modifies this
      * @effects adds a new filter with object job which represent the functionality of filter
      * 			if there is already another filter with the same label in this
-     * 			then do nothing
+     * 			or job=null
+     * 			then do nothing.
      */
 	public void addFilter(T filter, Object job) {
+		if(job!=null) {
 		graph.addWhiteNode(filter,job);
+		}
 	}
     /**
      * @modifies this
-     * @effects adds a new edge between parentName and childName in this
+     * @effects adds a new edge with label=edgeLabel between parentName and childName in this.
+     * 			if
+     * 			 parent and child are the same type (both of them are pipe or filter)
+     * 			or 
+     * 			edgeLabel==null or (parentaName or childName are not contained in this)
+     * 			then do nothing
      * 			
-     * 
      */
 	public void addEdge(T parentName,
 						T childName, T edgeLabel) {
 		graph.addEdge(parentName, childName, edgeLabel);
 	}
-	//TODO add specs
+    /**
+     * @effects return the object job of pipeName or null if pipeName is not in this
+     */
 	public Object getPipe(T pipeName) {
 		if(Arrays.asList(graph.listBlackNodes()).contains(pipeName)) {
 			return graph.getJob(pipeName);
 		}
 		return null;
 	}
-	//TODO add specs
+    /**
+     * @effects return the object job of filterName or null if filterName is not in this
+     */
 	public Object getFilter(T filterName) {
 		if(Arrays.asList(graph.listWhiteNodes()).contains(filterName)) {
 			return graph.getJob(filterName);
@@ -87,7 +98,13 @@ public class Simulator<T> {
 	}
 	
 	
-	//TODO add specs
+    /**
+     * @requires all pipes and filters object job in this need to implement Simulatable
+     * @modifies this
+     * @effects Simulation step. Will round robin the pipes by calling pipe.simulate() one time for each pipe
+     * 			and then round robin the filters by calling filter.simulate() one time for each filter
+     * 			then advance the this.round in 1.
+     */
 	public void simulate() {
 		for (Object pipeLabel: graph.listBlackNodes()) {
 			Object pipe =graph.getJob((T)pipeLabel);
@@ -100,7 +117,7 @@ public class Simulator<T> {
 		round=+1;
 	}
 	/**
-	 * @return the round
+	 * @effects return the round number of this
 	 */
 	public Integer getRound() {
 		return round;
