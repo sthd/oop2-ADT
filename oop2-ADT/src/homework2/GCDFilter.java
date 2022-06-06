@@ -6,7 +6,6 @@ package homework2;
 */
 public class GCDFilter implements Simulatable<String> {
 	//TODO add rep invariant
-	//TODO add Abstraction function
 	
 	/*
 	 * Abstraction Function:
